@@ -19,7 +19,7 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        var tableName = "IBASKantine2024";
+        var tableName = "IBASKantine2025";
         var connectionString =
             "DefaultEndpointsProtocol=https;AccountName=ibaskantine;AccountKey=v5FkdhmWiSXrARqDaVC/swrmATAV+lrlSWgyH6hO1j/yLrdxDoUuJDX0NunsRq99HFWHkIXJaeXQ+ASt6vMHqg==;EndpointSuffix=core.windows.net";
         var tableClient = new TableClient(connectionString, tableName);
@@ -33,11 +33,16 @@ public class IndexModel : PageModel
                 PartitionKey = entity.PartitionKey,
                 RowKey = entity.RowKey,
                 Lokation = entity.GetString("Lokation"),
-                Ugedag = entity.GetString("Ugedag"),
+                Ugedag = entity.RowKey,
                 Hotmeal = entity.GetString("Hotmeal"),
                 Coldmeal = entity.GetString("Coldmeal")
             };
             TableData.Add(menuItem);
         }
+        
+        var weekdayOrder = new List<string> { "Man", "Tirs", "Ons", "Tors", "Fre" };
+        TableData = TableData
+            .OrderBy(item => weekdayOrder.IndexOf(item.Ugedag))
+            .ToList();
     }
 }
