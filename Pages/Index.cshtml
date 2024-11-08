@@ -8,35 +8,24 @@
     <h1 class="display-4">Kantinens Menu for uge 45</h1>
     <h3>Næste uge</h3>
     <table>
-        <tr>
-            <th>Dag</th>
-            <th>Varm Ret</th>
-            <th>Kold Ret</th>
-        </tr>
-        <tr>
-            <td>Man</td>
-            <td>Tortillas</td>
-            <td>Græsk Salat</td>
-        </tr>
-        <tr>
-            <td>Tirs</td>
-            <td>Græskar Suppe</td>
-            <td>Pastasalat</td>
-        </tr>
-        <tr>
-            <td>Ons</td>
-            <td>Svensk pølseret</td>
-            <td>Rugbrød med Tunsalat</td>
-        </tr>
-        <tr>
-            <td>Tors</td>
-            <td>Fishsticks</td>
-            <td>Kartoffelsalat</td>
-        </tr>
-        <tr>
-            <td>Fre</td>
-            <td>Boller i karry</td>
-            <td>Sushi</td>
-        </tr>
+        <thead>
+                <tr>
+                    <th>Ugedag</th>
+                    <th>Hotmeal</th>
+                    <th>Coldmeal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.TableData)
+                {
+                    <tr>
+                        <td>@item.Ugedag</td>
+                        <td>@item.Hotmeal</td>
+                        <td>@item.Coldmeal</td>
+                    </tr>
+                }
+            </tbody>
     </table>
 </div>
+
+
