@@ -23,7 +23,7 @@ public class IndexModel : PageModel
         var connectionString =
             "DefaultEndpointsProtocol=https;AccountName=ibaskantine;AccountKey=v5FkdhmWiSXrARqDaVC/swrmATAV+lrlSWgyH6hO1j/yLrdxDoUuJDX0NunsRq99HFWHkIXJaeXQ+ASt6vMHqg==;EndpointSuffix=core.windows.net";
         var tableClient = new TableClient(connectionString, tableName);
-
+        //gjort så sevret godt kan pushes
         Pageable<TableEntity> queryResults = tableClient.Query<TableEntity>();
 
         foreach (var entity in queryResults)
