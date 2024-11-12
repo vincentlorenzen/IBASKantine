@@ -25,7 +25,7 @@ public class IndexModel : PageModel
                 // Retrieve the Table Storage endpoint from the environment variable
                 var tableEndpoint = new Uri("https://ibaskantine.table.core.windows.net");
 
-                var tableName = "IBASKantine2025"; // Replace with your actual table name
+                var tableName = "IBASKantine2024"; // Replace with your actual table name
 
                 // Use DefaultAzureCredential for secure authentication
                 var credential = new DefaultAzureCredential();
