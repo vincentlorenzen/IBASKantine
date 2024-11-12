@@ -20,18 +20,14 @@ public class IndexModel : PageModel
 
     public void OnGet()
         {
-            try
-            {
-                // Retrieve the Table Storage endpoint from the environment variable
+                //Siden environmental variable ikke virkede,sætter jeg nu direkte value fra den ind istedet for navnet
                 var tableEndpoint = new Uri("https://ibaskantine.table.core.windows.net");
 
                 var tableName = "IBASKantine2024"; // Replace with your actual table name
 
-                // Use DefaultAzureCredential for secure authentication
                 var credential = new DefaultAzureCredential();
                 var tableClient = new TableClient(tableEndpoint, tableName, new DefaultAzureCredential());
 
-                // Query the table data
                 Pageable<TableEntity> queryResults = tableClient.Query<TableEntity>();
 
                 foreach (var entity in queryResults)
@@ -48,18 +44,11 @@ public class IndexModel : PageModel
                     TableData.Add(menuItem);
                 }
 
-                // Sort the TableData by weekday order
                 var weekdayOrder = new List<string> { "Man", "Tirs", "Ons", "Tors", "Fre" };
                 TableData = TableData
                     .OrderBy(item => weekdayOrder.IndexOf(item.Ugedag))
                     .ToList();
             }
-            catch (Exception ex)
-            {
-                // Log the error and display an error message
-                Console.WriteLine("Error: " + ex.Message);
-                _logger.LogError(ex, "Failed to retrieve or process data from Azure Table Storage.");
-            }
         }
 
-}
+
